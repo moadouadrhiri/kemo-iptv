@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kemo iptv Installation Guide - Easy Setup | kemo iptv</title>
+    <meta name="description" content="Set up kemo IPTV on any device with our comprehensive guide. Follow step-by-step instructions for Amazon Firestick, Smart TVs, Android, iOS, Windows, and more.">
+    <meta name="keywords" content="kemo iptv, IPTV, streaming, us">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://kemo-iptv.pages.dev/installation-guide.html" />
+    <link rel="alternate" hreflang="en" href="https://kemo-iptv.pages.dev/installation-guide.html" />
+    
+    <meta property="og:title" content="kemo iptv Installation Guide - Easy Setup | kemo iptv">
+    <meta property="og:description" content="Set up kemo IPTV on any device with our comprehensive guide. Follow step-by-step instructions for Amazon Firestick, Smart TVs, Android, iOS, Windows, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kemo-iptv.pages.dev/installation-guide.html">
+    <meta property="og:site_name" content="kemo iptv">
+    <meta property="og:locale" content="en_US">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="kemo iptv Installation Guide - Easy Setup | kemo iptv">
+    <meta name="twitter:description" content="Set up kemo IPTV on any device with our comprehensive guide. Follow step-by-step instructions for Amazon Firestick, Smart TVs, Android, iOS, Windows, and more.">
+    
+    
+    
+    
+    
+    <style>
+      
+      :root {
+        --primary: #ff6600;
+        --primary-dark: #cc5200;
+        --secondary: #00c853;
+        --background: #0a0a12;
+        --background-alt: #0e0e1a;
+        --background-elevated: #141422;
+        --foreground: #ffffff;
+        --foreground-secondary: #b8b8c8;
+        --foreground-muted: #6b6b80;
+        --muted: #a0a0a0;
+        --border: #1e1e30;
+        --border-accent: #2a2a45;
+        --card-bg: #12121c;
+        --card-bg-elevated: #181828;
+        --header-bg: rgba(10, 10, 18, 0.98);
+        --nav-text: #ffffff;
+        --hero-bg: linear-gradient(180deg, #0a0a12 0%, #1a1a2e 100%);
+        --hero-text: white;
+        --hero-radius: 0;
+        --btn-bg: #ff6600;
+        --btn-text: white;
+        --btn-shadow: 0 4px 20px rgba(255, 102, 0, 0.4);
+        --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        --footer-bg: #050508;
+        --footer-text: #888888;
+        --footer-link: #ff6600;
+        --accent-gradient: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
+        --success-color: #00c853;
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2.5rem;
+        --space-xl: 4rem;
+        --space-2xl: 6rem;
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --radius-xl: 28px;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--foreground);
+        background: var(--background);
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      
+      header {
+        background: var(--header-bg);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      
+      .logo {
+        height: 40px;
+        width: auto;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      
+      nav {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      
+      .nav-link {
+        text-decoration: none;
+        color: var(--nav-text);
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      
+      .nav-link:hover, .nav-link.active {
+        color: var(--primary);
+      }
+      
+      .language-switcher {
+        display: flex;
+        gap: 0.5rem;
+      }
+      
+      .lang-option {
+        padding: 0.25rem 0.5rem;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.875rem;
+        border-radius: 4px;
+      }
+      
+      .lang-option:hover, .lang-option.active {
+        background: var(--primary);
+        color: white;
+      }
+      
+      main {
+        min-height: calc(100vh - 200px);
+        padding: 2rem 0;
+      }
+      
+      .hero {
+        text-align: center;
+        padding: 4rem 1rem;
+        background: var(--hero-bg);
+        color: var(--hero-text);
+        border-radius: var(--hero-radius);
+        margin-bottom: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .hero p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        background: var(--btn-bg);
+        color: var(--btn-text);
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: none;
+      }
+      
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--btn-shadow);
+      }
+      
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+      
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+      }
+      
+      .feature-card {
+        background: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      
+      .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow);
+      }
+      
+      .feature-card h3 {
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+      
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      
+      .pricing-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      
+      .pricing-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow);
+      }
+      
+      .pricing-card.featured {
+        border-color: var(--primary);
+        transform: scale(1.05);
+      }
+      
+      .pricing-card.featured::before {
+        content: 'Most Popular';
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary);
+        color: white;
+        padding: 0.25rem 1rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      
+      .price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin: 1rem 0;
+      }
+      
+      .price span {
+        font-size: 1rem;
+        color: var(--muted);
+      }
+      
+      ul {
+        list-style: none;
+        text-align: left;
+      }
+      
+      ul li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      
+      ul li::before {
+        content: '\2713';
+        color: var(--secondary);
+        margin-right: 0.5rem;
+      }
+      
+      footer {
+        background: var(--footer-bg);
+        color: var(--footer-text);
+        padding: 3rem 0 2rem;
+      }
+      
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+        text-align: left;
+      }
+      
+      .footer-col h4 {
+        color: var(--footer-link);
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .footer-col a {
+        display: block;
+        color: var(--footer-text);
+        text-decoration: none;
+        padding: 0.35rem 0;
+        font-size: 0.9rem;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+      }
+      
+      .footer-col a:hover {
+        opacity: 1;
+        color: var(--footer-link);
+      }
+      
+      .footer-copyright {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        font-size: 0.85rem;
+        opacity: 0.7;
+      }
+      
+      footer a {
+        color: var(--footer-link);
+        text-decoration: none;
+      }
+      
+      footer a:hover {
+        text-decoration: underline;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        line-height: 1.3;
+        margin-bottom: 1rem;
+      }
+      
+      h2 {
+        font-size: 2rem;
+        text-align: center;
+        margin: 2rem 0;
+      }
+      
+      p {
+        margin-bottom: 1rem;
+      }
+      
+      .faq {
+        max-width: 800px;
+        margin: 2rem auto;
+      }
+      
+      .faq-item {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+      }
+      
+      .faq-question {
+        background: var(--card-bg);
+        padding: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      
+      .faq-answer {
+        padding: 1rem;
+        display: none;
+      }
+      
+      .faq-item.open .faq-answer {
+        display: block;
+      }
+      
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 1.75rem;
+        }
+        
+        .pricing-card.featured {
+          transform: none;
+        }
+        
+        .header-content {
+          flex-direction: column;
+        }
+      }
+      
+      body {
+        background: var(--background);
+        color: var(--foreground);
+        font-size: 16px;
+      }
+      
+      /* Typography Scale */
+      .nexus-eyebrow {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #ff6600;
+        margin-bottom: var(--space-sm);
+      }
+      
+      .nexus-lead {
+        font-size: 1.25rem;
+        line-height: 1.7;
+        color: var(--foreground-secondary);
+      }
+      
+      /* Hero Section - Two Column Layout */
+      .nexus-hero {
+        position: relative;
+        min-height: 90vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        padding: var(--space-xl) var(--space-md);
+        background: linear-gradient(180deg, rgba(10, 10, 18, 0.95) 0%, rgba(14, 14, 26, 0.98) 100%);
+        overflow: hidden;
+      }
+      
+      .nexus-hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 80%;
+        height: 150%;
+        background: radial-gradient(ellipse at center, rgba(255, 102, 0, 0.08) 0%, transparent 60%);
+        z-index: 0;
+        pointer-events: none;
+      }
+      
+      .nexus-hero::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #ff660040, transparent);
+      }
+      
+      .nexus-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      
+      .nexus-hero h1 {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: var(--space-md);
+        color: white;
+        text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+      }
+      
+      .nexus-hero h1 span {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .nexus-hero p {
+        font-size: 1.15rem;
+        color: var(--foreground-secondary);
+        margin-bottom: var(--space-lg);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.7;
+      }
+      
+      .nexus-hero-buttons {
+        display: flex;
+        gap: var(--space-sm);
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: var(--space-xl);
+      }
+      
+      .nexus-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2.5rem;
+        background: var(--accent-gradient);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 24px rgba(255, 102, 0, 0.35);
+        border: none;
+        cursor: pointer;
+      }
+      
+      .nexus-cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(255, 102, 0, 0.5);
+      }
+      
+      .nexus-cta-btn-secondary {
+        background: transparent;
+        border: 2px solid var(--border-accent);
+        box-shadow: none;
+        color: var(--foreground-secondary);
+      }
+      
+      .nexus-cta-btn-secondary:hover {
+        border-color: #ff6600;
+        color: white;
+        box-shadow: none;
+      }
+      
+      /* Stats Bar */
+      .nexus-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-md);
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg) var(--space-md);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .nexus-stat {
+        text-align: center;
+        position: relative;
+      }
+      
+      .nexus-stat:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 20%;
+        height: 60%;
+        width: 1px;
+        background: var(--border);
+      }
+      
+      .nexus-stat-value {
+        font-size: clamp(1.75rem, 3vw, 2.25rem);
+        font-weight: 800;
+        color: #ff6600;
+        line-height: 1.2;
+      }
+      
+      .nexus-stat-label {
+        color: var(--foreground-muted);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 0.25rem;
+      }
+      
+      /* Section Styling */
+      .nexus-section {
+        padding: var(--space-2xl) 0;
+        position: relative;
+      }
+      
+      .nexus-section--alt {
+        background: var(--background-alt);
+      }
+      
+      .nexus-section--dark {
+        background: var(--background);
+      }
+      
+      .nexus-section-header {
+        text-align: center;
+        margin-bottom: var(--space-xl);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .nexus-section-title {
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-weight: 700;
+        margin-bottom: var(--space-sm);
+        color: white;
+      }
+      
+      .nexus-section-subtitle {
+        color: var(--foreground-muted);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        margin: 0;
+      }
+      
+      /* Card Components */
+      .nexus-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: var(--space-lg);
+        transition: all 0.3s ease;
+      }
+      
+      .nexus-card:hover {
+        border-color: var(--border-accent);
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow);
+      }
+      
+      /* Features Grid */
+      .nexus-features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-md);
+      }
+      
+      .nexus-feature {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: var(--space-lg);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .nexus-feature::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--accent-gradient);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .nexus-feature:hover {
+        border-color: #ff660040;
+        transform: translateY(-4px);
+      }
+      
+      .nexus-feature:hover::before {
+        opacity: 1;
+      }
+      
+      .nexus-feature-icon {
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, #ff660020 0%, #ff660010 100%);
+        border: 1px solid #ff660030;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--space-md);
+        font-size: 1.5rem;
+        color: #ff6600;
+      }
+      
+      .nexus-feature h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: var(--space-xs);
+        color: white;
+      }
+      
+      .nexus-feature p {
+        color: var(--foreground-muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      
+      /* Pricing Section */
+      .nexus-pricing {
+        background: var(--background);
+        padding: var(--space-2xl) 0;
+      }
+      
+      .nexus-device-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: var(--space-xl);
+        flex-wrap: wrap;
+        background: var(--card-bg);
+        padding: 0.5rem;
+        border-radius: 50px;
+        max-width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid var(--border);
+      }
+      
+      .nexus-device-tab {
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        border: none;
+        border-radius: 50px;
+        color: var(--foreground-muted);
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .nexus-device-tab:hover {
+        color: white;
+      }
+      
+      .nexus-device-tab.active {
+        background: #ff6600;
+        color: white;
+      }
+      
+      .nexus-pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-md);
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 var(--space-sm);
+      }
+      
+      .nexus-price-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .nexus-price-card:hover {
+        border-color: var(--border-accent);
+        transform: translateY(-4px);
+      }
+      
+      .nexus-price-card.featured {
+        border-color: #ff6600;
+        background: linear-gradient(180deg, var(--card-bg-elevated) 0%, var(--card-bg) 100%);
+      }
+      
+      .nexus-price-card.featured::before {
+        content: 'Most Popular';
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent-gradient);
+        color: white;
+        padding: 0.35rem 1.25rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .nexus-price-header {
+        text-align: center;
+        padding-bottom: var(--space-md);
+        margin-bottom: var(--space-md);
+        border-bottom: 1px solid var(--border);
+      }
+      
+      .nexus-package-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #3a7ca5;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .nexus-no-contract {
+        color: #ff6600;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+      }
+      
+      .nexus-price-value {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+      }
+      
+      .nexus-price-currency {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: white;
+        margin-top: 0.5rem;
+        margin-right: 0.25rem;
+      }
+      
+      .nexus-price-amount {
+        font-size: 4.5rem;
+        font-weight: 300;
+        color: white;
+        line-height: 1;
+      }
+      
+      .nexus-price-duration {
+        font-size: 0.95rem;
+        color: #6a7a8a;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .nexus-price-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.5rem 0;
+        text-align: left;
+      }
+      
+      .nexus-price-features li {
+        padding: 0.6rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #9aa5b0;
+        font-size: 0.95rem;
+        border-bottom: none;
+      }
+      
+      .nexus-price-features li::before {
+        content: '';
+        display: none;
+      }
+      
+      .nexus-check {
+        width: 18px;
+        height: 18px;
+        background: transparent;
+        border: 2px solid #3a7ca5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      
+      .nexus-check::after {
+        content: '\2713';
+        color: #3a7ca5;
+        font-size: 10px;
+        font-weight: bold;
+      }
+      
+      .nexus-bonus-text {
+        color: #3a7ca5;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+      
+      .nexus-buy-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.875rem 1rem;
+        background: transparent;
+        border: 2px solid #3a7ca5;
+        color: #0a0a12;
+        background: #3a7ca5;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .nexus-buy-btn:hover {
+        background: #4a8cb5;
+        border-color: #4a8cb5;
+        transform: translateY(-2px);
+      }
+      
+      .nexus-buy-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+      
+      .nexus-price-card.premium .nexus-buy-btn {
+        background: #ff6600;
+        border-color: #ff6600;
+      }
+      
+      .nexus-price-card.premium .nexus-buy-btn:hover {
+        background: #ff7722;
+        border-color: #ff7722;
+      }
+      
+      .nexus-payment-badges {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px dashed #2a3a4a;
+      }
+      
+      .nexus-secure-text {
+        font-size: 0.7rem;
+        color: #5a6a7a;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .nexus-secure-text::before,
+      .nexus-secure-text::after {
+        content: '';
+        width: 30px;
+        height: 1px;
+        background: #3a4a5a;
+      }
+      
+      .nexus-payment-icons {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .nexus-payment-icon {
+        height: 20px;
+        opacity: 0.7;
+        filter: grayscale(100%) brightness(1.5);
+      }
+      
+      .nexus-reviews {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        color: #6a7a8a;
+      }
+      
+      .nexus-review-stars,
+      .nexus-stars-small {
+        color: #ffc107;
+        letter-spacing: 1px;
+      }
+      
+      .nexus-guarantee {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        color: #888;
+        font-size: 0.85rem;
+      }
+      
+      .nexus-pricing-data {
+        display: none;
+      }
+      
+      .nexus-faq {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .nexus-faq-item {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+      }
+      
+      .nexus-faq-question {
+        padding: 1.25rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+      }
+      
+      .nexus-faq-question:hover {
+        background: rgba(255, 102, 0, 0.1);
+      }
+      
+      .nexus-faq-answer {
+        padding: 0 1.5rem 1.25rem;
+        color: #aaa;
+        display: none;
+      }
+      
+      .nexus-faq-item.open .nexus-faq-answer {
+        display: block;
+      }
+      
+      .nexus-channels-banner {
+        background: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
+        padding: 3rem 1rem;
+        text-align: center;
+        margin: 3rem 0;
+        border-radius: 16px;
+      }
+      
+      .nexus-channels-banner h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .nexus-channels-banner p {
+        opacity: 0.9;
+      }
+      
+      .nexus-content-block {
+        max-width: 900px;
+        margin: 0 auto;
+        line-height: 1.8;
+        color: #ccc;
+      }
+      
+      .nexus-content-block p {
+        margin-bottom: 1.5rem;
+        font-size: 1.05rem;
+      }
+      
+      .nexus-content-block h3 {
+        color: white;
+        margin: 2rem 0 1rem;
+        font-size: 1.5rem;
+      }
+      
+      .nexus-content-block ul, .nexus-content-block ol {
+        margin: 1.5rem 0;
+        padding-left: 1.5rem;
+      }
+      
+      .nexus-content-block li {
+        margin-bottom: 0.75rem;
+        color: #bbb;
+      }
+      
+      .nexus-content-block li::before {
+        color: #ff6600;
+      }
+      
+      .nexus-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      
+      .nexus-step {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+      }
+      
+      .nexus-step-number {
+        width: 50px;
+        height: 50px;
+        background: var(--accent-gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: white;
+        margin: 0 auto 1rem;
+      }
+      
+      .nexus-step h3 {
+        color: white;
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+      }
+      
+      .nexus-step p {
+        color: #888;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      
+      .nexus-testimonials {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+      
+      .nexus-testimonial {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+      }
+      
+      .nexus-testimonial-content {
+        color: #ccc;
+        font-style: italic;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+      
+      .nexus-testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      
+      .nexus-testimonial-avatar {
+        width: 50px;
+        height: 50px;
+        background: var(--accent-gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+      }
+      
+      .nexus-testimonial-name {
+        color: white;
+        font-weight: 600;
+      }
+      
+      .nexus-testimonial-location {
+        color: #888;
+        font-size: 0.9rem;
+      }
+      
+      .nexus-stars {
+        color: #ffc107;
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        letter-spacing: 2px;
+      }
+      
+      .nexus-comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+      }
+      
+      .nexus-comparison-table th,
+      .nexus-comparison-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+      
+      .nexus-comparison-table th {
+        background: var(--card-bg);
+        color: white;
+        font-weight: 600;
+      }
+      
+      .nexus-comparison-table td {
+        color: #ccc;
+      }
+      
+      .nexus-comparison-table tr:hover {
+        background: rgba(255, 102, 0, 0.05);
+      }
+      
+      /* CTA Banner */
+      .nexus-cta-banner {
+        background: linear-gradient(135deg, var(--card-bg) 0%, var(--background-elevated) 100%);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl) var(--space-lg);
+        text-align: center;
+        margin: var(--space-xl) 0;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .nexus-cta-banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--accent-gradient);
+      }
+      
+      .nexus-cta-banner h2 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: var(--space-sm);
+      }
+      
+      .nexus-cta-banner p {
+        color: var(--foreground-secondary);
+        margin-bottom: var(--space-md);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      /* Device Compatibility Grid */
+      .nexus-devices-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: var(--space-sm);
+        margin-top: var(--space-lg);
+      }
+      
+      .nexus-device-item {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+      
+      .nexus-device-item:hover {
+        border-color: var(--border-accent);
+        transform: translateY(-2px);
+      }
+      
+      .nexus-device-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      
+      .nexus-device-name {
+        color: var(--foreground-secondary);
+        font-size: 0.9rem;
+      }
+      
+      /* Animated Background Elements */
+      .nexus-glow-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        pointer-events: none;
+        animation: float 8s ease-in-out infinite;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(20px, -20px); }
+      }
+      
+      /* FAQ Accordion Animation */
+      .nexus-faq-toggle {
+        transition: transform 0.3s ease;
+      }
+      
+      .nexus-faq-item.open .nexus-faq-toggle {
+        transform: rotate(180deg);
+      }
+      
+      /* Footer Enhancements */
+      .nexus-footer {
+        background: var(--footer-bg);
+        padding: var(--space-2xl) 0 var(--space-lg);
+      }
+      
+      .nexus-footer-grid {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr);
+        gap: var(--space-xl);
+        margin-bottom: var(--space-xl);
+      }
+      
+      .nexus-footer-brand {
+        color: var(--foreground-secondary);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+      
+      .nexus-footer-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: var(--space-sm);
+        display: block;
+      }
+      
+      .nexus-footer-col h4 {
+        color: white;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: var(--space-md);
+      }
+      
+      .nexus-footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .nexus-footer-links li {
+        border: none;
+        padding: 0.35rem 0;
+      }
+      
+      .nexus-footer-links li::before {
+        display: none;
+      }
+      
+      .nexus-footer-links a {
+        color: var(--foreground-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+      }
+      
+      .nexus-footer-links a:hover {
+        color: #ff6600;
+      }
+      
+      .nexus-footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: var(--space-lg);
+        border-top: 1px solid var(--border);
+        color: var(--foreground-muted);
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+      }
+      
+      .nexus-social-links {
+        display: flex;
+        gap: var(--space-sm);
+      }
+      
+      .nexus-social-link {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--foreground-muted);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      
+      .nexus-social-link:hover {
+        border-color: #ff6600;
+        color: #ff6600;
+      }
+      
+      @media (max-width: 992px) {
+        .nexus-pricing-grid {
+          grid-template-columns: 1fr;
+          max-width: 400px;
+        }
+        
+        .nexus-footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .nexus-hero {
+          min-height: auto;
+          padding: var(--space-xl) var(--space-sm);
+        }
+        
+        .nexus-hero h1 {
+          font-size: 1.75rem;
+        }
+        
+        .nexus-hero p {
+          font-size: 1rem;
+        }
+        
+        .nexus-stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--space-sm);
+          padding: var(--space-md);
+        }
+        
+        .nexus-stat:not(:last-child)::after {
+          display: none;
+        }
+        
+        .nexus-stat {
+          padding: var(--space-xs) 0;
+        }
+        
+        .nexus-stat-value {
+          font-size: 1.5rem;
+        }
+        
+        .nexus-stat-label {
+          font-size: 0.7rem;
+        }
+        
+        .nexus-section {
+          padding: var(--space-xl) 0;
+        }
+        
+        .nexus-section-title {
+          font-size: 1.5rem;
+        }
+        
+        .nexus-device-tabs {
+          gap: 0.5rem;
+          flex-wrap: wrap;
+        }
+        
+        .nexus-device-tab {
+          padding: 0.5rem 1rem;
+          font-size: 0.8rem;
+        }
+        
+        .nexus-price-amount {
+          font-size: 3rem;
+        }
+        
+        .nexus-hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .nexus-cta-btn {
+          width: 100%;
+          max-width: 280px;
+        }
+        
+        .nexus-footer-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        
+        .nexus-footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+        
+        .nexus-testimonials {
+          grid-template-columns: 1fr;
+        }
+        
+        .nexus-steps {
+          grid-template-columns: 1fr;
+        }
+        
+        .nexus-feature-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .nexus-cta-banner {
+          padding: var(--space-lg) var(--space-md);
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .nexus-stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        
+        .nexus-hero h1 {
+          font-size: 1.5rem;
+        }
+        
+        .nexus-pricing-grid {
+          grid-template-columns: 1fr;
+          padding: 0 var(--space-xs);
+          gap: var(--space-sm);
+        }
+        
+        .nexus-price-card {
+          padding: var(--space-md);
+        }
+        
+        .nexus-price-amount {
+          font-size: 2.5rem;
+        }
+        
+        .nexus-cta-btn {
+          padding: 0.875rem 1.5rem;
+          font-size: 0.9rem;
+        }
+        
+        .nexus-hero-buttons {
+          gap: var(--space-xs);
+        }
+        
+        .container {
+          padding: 0 0.75rem;
+        }
+        
+        .nexus-section {
+          padding: var(--space-lg) 0;
+        }
+        
+        .nexus-section-title {
+          font-size: 1.25rem;
+        }
+        
+        .nexus-section-subtitle {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+</head>
+<body>
+    
+    
+    <header>
+      <div class="container header-content">
+        <a href="/" class="logo-link">
+          <span class="logo-text">kemo iptv</span>
+        </a>
+        <nav>
+          <a href="/" class="nav-link">Home</a>
+          <a href="/pricing.html" class="nav-link">iptv Pricing</a>
+          <a href="/installation-guide.html" class="nav-link active">Setup Guide</a>
+          <a href="/reseller.html" class="nav-link">Reseller</a>
+          <a href="/blog.html" class="nav-link">iptv Blog</a>
+          <a href="/contact.html" class="nav-link">kemo iptv Support</a>
+        </nav>
+        
+      </div>
+    </header>
+    
+    <main class="container">
+      <h1>kemo iptv Installation Guide - Setup on Any Device</h1><p>Setting up kemo IPTV on your devices is straightforward and easy. Follow the detailed instructions below to enjoy your favorite programs right away.</p><h2>Installing kemo iptv on Amazon Firestick</h2><p>1. Go to 'Settings' on your Firestick and enable 'Apps from Unknown Sources'. 2. Download and install the Downloader app. 3. Enter your kemo IPTV URL and install the app.</p><h2>Installing kemo iptv on Smart TVs</h2><p>To install kemo IPTV on Samsung, LG, or Sony Smart TVs, search for the IPTV app on the TV's app store and follow the on-screen prompts using your activation code provided after subscription.</p><h2>Installing kemo iptv on Android Devices</h2><p>Download our app from the Google Play Store, enter your credentials, and start watching immediately.</p><h2>Recommended Apps for kemo iptv</h2><p>Consider using IPTV Smarters, TiviMate, or GSE Smart IPTV for optimal viewing experience on various devices.</p><h2>Troubleshooting Tips</h2><p>If you encounter issues, visit our <a href='/contact.html'>Contact Page</a> for expert assistance. Our support team is here to help 24/7.</p><p>If you're not yet subscribed, check out our <a href='/subscription.html'>Subscription Page</a> to sign up and start streaming.</p>
+    </main>
+    
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="/pricing.html">Pricing</a>
+            <a href="/subscription.html">Subscribe</a>
+            <a href="/installation-guide.html">Installation Guide</a>
+            <a href="/reseller.html">Reseller Program</a>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="/blog.html">Blog</a>
+            <a href="/about.html">About Us</a>
+            <a href="/contact.html">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Service</a>
+          </div>
+        </div>
+        <p class="footer-copyright">&copy; 2025 kemo iptv. All rights reserved.</p>
+      </div>
+    </footer>
+    
+    <script>
+      document.querySelectorAll('.faq-question').forEach(function(q) {
+        q.addEventListener('click', function() {
+          this.parentElement.classList.toggle('open');
+        });
+      });
+      
+      // Device tabs pricing switcher
+      document.querySelectorAll('.nexus-device-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var deviceCount = this.getAttribute('data-devices');
+          
+          // Update active tab
+          document.querySelectorAll('.nexus-device-tab').forEach(function(t) {
+            t.classList.remove('active');
+          });
+          this.classList.add('active');
+          
+          // Update all price amounts
+          document.querySelectorAll('.nexus-price-amount[data-prices]').forEach(function(priceEl) {
+            var prices = JSON.parse(priceEl.getAttribute('data-prices'));
+            if (prices && prices[deviceCount]) {
+              priceEl.textContent = prices[deviceCount];
+            }
+          });
+        });
+      });
+    </script>
+</body>
+</html>
