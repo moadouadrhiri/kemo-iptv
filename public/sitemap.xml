@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://kemo-iptv.pages.dev/</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://kemo-iptv.pages.dev/" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://kemo-iptv.pages.dev/" />
+  </url>
+  <url>
+    <loc>https://kemo-iptv.pages.dev/pricing.html</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://kemo-iptv.pages.dev/pricing.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://kemo-iptv.pages.dev/pricing.html" />
+  </url>
+  <url>
+    <loc>https://kemo-iptv.pages.dev/subscription.html</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://kemo-iptv.pages.dev/subscription.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://kemo-iptv.pages.dev/subscription.html" />
+  </url>
+  <url>
+    <loc>https://kemo-iptv.pages.dev/installation-guide.html</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://kemo-iptv.pages.dev/installation-guide.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://kemo-iptv.pages.dev/installation-guide.html" />
+  </url>
+  <url>
+    <loc>https://kemo-iptv.pages.dev/reseller.html</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://kemo-iptv.pages.dev/reseller.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://kemo-iptv.pages.dev/reseller.html" />
+  </url>
+  <url>
+    <loc>https://kemo-iptv.pages.dev/blog.html</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://kemo-iptv.pages.dev/blog.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://kemo-iptv.pages.dev/blog.html" />
+  </url>
+  <url>
+    <loc>https://kemo-iptv.pages.dev/about.html</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://kemo-iptv.pages.dev/about.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://kemo-iptv.pages.dev/about.html" />
+  </url>
+  <url>
+    <loc>https://kemo-iptv.pages.dev/contact.html</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://kemo-iptv.pages.dev/contact.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://kemo-iptv.pages.dev/contact.html" />
+  </url>
+</urlset>

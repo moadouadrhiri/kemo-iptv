@@ -1,0 +1,55 @@
+<svg viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- TV Frame -->
+  <rect x="50" y="30" width="500" height="300" rx="16" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Screen -->
+  <rect x="60" y="40" width="480" height="280" rx="8" fill="url(#screenGradient)"/>
+  
+  <!-- Screen Content - Channel Grid -->
+  <g transform="translate(80, 60)">
+    <!-- Row 1 -->
+    <rect x="0" y="0" width="100" height="70" rx="6" fill="#3B82F6" opacity="0.8"/>
+    <rect x="110" y="0" width="100" height="70" rx="6" fill="#10B981" opacity="0.8"/>
+    <rect x="220" y="0" width="100" height="70" rx="6" fill="#8B5CF6" opacity="0.8"/>
+    <rect x="330" y="0" width="100" height="70" rx="6" fill="#F97316" opacity="0.8"/>
+    
+    <!-- Row 2 -->
+    <rect x="0" y="80" width="100" height="70" rx="6" fill="#EF4444" opacity="0.8"/>
+    <rect x="110" y="80" width="100" height="70" rx="6" fill="#06B6D4" opacity="0.8"/>
+    <rect x="220" y="80" width="100" height="70" rx="6" fill="#F59E0B" opacity="0.8"/>
+    <rect x="330" y="80" width="100" height="70" rx="6" fill="#EC4899" opacity="0.8"/>
+    
+    <!-- Row 3 -->
+    <rect x="0" y="160" width="100" height="70" rx="6" fill="#14B8A6" opacity="0.8"/>
+    <rect x="110" y="160" width="100" height="70" rx="6" fill="#6366F1" opacity="0.8"/>
+    <rect x="220" y="160" width="100" height="70" rx="6" fill="#84CC16" opacity="0.8"/>
+    <rect x="330" y="160" width="100" height="70" rx="6" fill="#22D3EE" opacity="0.8"/>
+  </g>
+  
+  <!-- TV Stand -->
+  <path d="M250 330 L200 390 H180 L240 330 H360 L420 390 H400 L350 330 Z" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Power LED -->
+  <circle cx="300" cy="320" r="4" fill="#10B981">
+    <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Decorative Elements -->
+  <circle cx="520" cy="60" r="30" fill="url(#glowGradient)" opacity="0.6"/>
+  <circle cx="80" cy="350" r="20" fill="url(#glowGradient2)" opacity="0.4"/>
+  
+  <defs>
+    <linearGradient id="screenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <radialGradient id="glowGradient2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+</svg>

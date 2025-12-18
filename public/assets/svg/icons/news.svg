@@ -1,0 +1,14 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Paper -->
+  <path d="M8 6 L8 42 L36 42 L36 14 L28 6 Z" stroke="currentColor" stroke-width="2.5" fill="none"/>
+  <!-- Fold -->
+  <path d="M28 6 L28 14 L36 14" stroke="currentColor" stroke-width="2.5" fill="none"/>
+  <!-- Headlines -->
+  <path d="M14 20 L30 20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+  <!-- Text lines -->
+  <path d="M14 26 L30 26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M14 30 L30 30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M14 34 L24 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <!-- Second paper behind -->
+  <path d="M40 10 L40 44 L12 44" stroke="currentColor" stroke-width="2.5" fill="none" opacity="0.5"/>
+</svg>
