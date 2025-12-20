@@ -1,88 +1,113 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+import PricingSection from '../components/PricingSection';
+import FAQSection from '../components/FAQSection';
+import { generateBreadcrumbSchema, generateProductSchema } from '../utils/schema';
+
+const [serviceInfoEntries, pricingPlans, faqItems] = await Promise.all([
+  getCollection('service-info'),
+  getCollection('pricing'),
+  getCollection('faq'),
+]);
+
+const serviceInfo = serviceInfoEntries[0];
+const data = serviceInfo?.data || {};
+const baseUrl = data.siteUrl || Astro.url.origin;
+
+const sortedPricing = [...pricingPlans].sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+const pricingFaq = faqItems
+  .filter(f => f.data.category === 'pricing' || !f.data.category)
+  .slice(0, 5);
+
+const productSchema = generateProductSchema({
+  name: `${data.brandName} IPTV Subscription`,
+  description: `Premium IPTV service with ${data.channelCount}+ channels and ${data.vodCount}+ movies`,
+  brand: data.brandName,
+  offers: sortedPricing.map(plan => ({
+    priceCurrency: plan.data.currency,
+    price: plan.data.price,
+    name: plan.data.name,
+    url: `${baseUrl}/pricing`,
+  })),
+});
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: baseUrl },
+  { name: 'Pricing', url: `${baseUrl}/pricing` },
+]);
 ---
 
-<BaseLayout 
-  title="kemo iptv Pricing - Competitive Plans in US"
-  description="Discover kemo iptv's pricing plans with options for 1-5 devices and detailed feature comparisons. Affordable IPTV service tailored for the U.S."
-  canonicalUrl="https://kemo-iptv.pages.dev/pricing"
-  lang="en"
->
-  <Fragment set:html={`<!-- Header -->
-    <header class="header">
-      <div class="container header-inner">
-        <a href="/" class="logo">
-          <span class="logo-text">kemo iptv</span>
-        </a>
-        <nav class="nav">
-          <a href="/" class="nav-link">Home</a>
-          <a href="/pricing.html" class="nav-link active">iptv Pricing</a>
-          <a href="/installation-guide.html" class="nav-link">Setup Guide</a>
-          <a href="/reseller.html" class="nav-link">Reseller</a>
-          <a href="/blog.html" class="nav-link">iptv Blog</a>
-          <a href="/contact.html" class="nav-link">kemo iptv</a>
-        </nav>
-        
-        <button class="menu-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </header>
-    
-    <main class="page-content">
-      <div class="container">
-        <div class="page-header">
-          <h1 class="page-title">kemo iptv Pricing</h1>
+<BaseLayout>
+  <SEO
+    slot="head"
+    title={`Pricing - ${data.brandName}`}
+    description={`Explore ${data.brandName} pricing plans. Choose from flexible subscription options with ${data.channelCount}+ live channels and ${data.vodCount}+ movies & series.`}
+    canonicalURL={`${baseUrl}/pricing`}
+    schema={[productSchema, breadcrumbSchema]}
+  />
+
+  <section class="py-20 bg-gradient-to-b from-background to-muted/30">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        Choose Your Perfect Plan
+      </h1>
+      <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+        Flexible pricing options designed to fit your entertainment needs. All plans include full access to our premium features.
+      </p>
+    </div>
+  </section>
+
+  <PricingSection
+    client:load
+    plans={sortedPricing.map(p => ({ ...p.data, slug: p.id }))}
+    primaryColor={data.primaryColor}
+    showHeader={false}
+  />
+
+  <section class="py-16 bg-muted/30">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">All Plans Include</h2>
+      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="font-semibold mb-2">{data.channelCount}+ Live Channels</h3>
+          <p class="text-sm text-muted-foreground">Access to premium sports, news, and entertainment channels worldwide</p>
         </div>
-        <div class="content-wrapper">
-          <h1>kemo iptv Pricing - Affordable Plans for United States</h1><p>Explore the flexible and affordable pricing plans of kemo iptv, customized to cater to every viewer's needs in the United States. Choose between our Starter, Standard, and Premium packages, optimized for various devices.</p><h2>kemo iptv Device Options</h2><table class="nexus-table"><tr><th>Devices</th><th>Starter</th><th>Standard</th><th>Premium</th></tr><tr><td>1 Device</td><td>$9.99/<wbr>mo</td><td>$19.99/<wbr>mo</td><td>$29.99/<wbr>mo</td></tr><tr><td>2 Devices</td><td>$14.99/<wbr>mo</td><td>$24.99/<wbr>mo</td><td>$34.99/<wbr>mo</td></tr><tr><td>3 Devices</td><td>$19.99/<wbr>mo</td><td>$29.99/<wbr>mo</td><td>$39.99/<wbr>mo</td></tr><tr><td>4 Devices</td><td>$24.99/<wbr>mo</td><td>$34.99/<wbr>mo</td><td>$44.99/<wbr>mo</td></tr><tr><td>5 Devices</td><td>$29.99/<wbr>mo</td><td>$39.99/<wbr>mo</td><td>$49.99/<wbr>mo</td></tr></table><h2>kemo iptv Features Comparison</h2><p>The following table provides an in-depth comparison of the features available in each of our pricing plans:</p><table class="nexus-table"><tr><th>Feature</th><th>Starter</th><th>Standard</th><th>Premium</th></tr><tr><td>Channels</td><td>1000+</td><td>2000+</td><td>3000+</td></tr><tr><td>VOD</td><td>Minimal</td><td>Extensive</td><td>Complete</td></tr><tr><td>Catch-Up</td><td>Limited</td><td>Full</td><td>Full</td></tr><tr><td>EPG (TV Guide)</td><td>Basic</td><td>Full</td><td>Premium</td></tr></table><h2>Payment Methods</h2><p>At kemo iptv, we offer a variety of payment methods to ensure a seamless subscription experience. Choose from credit/card operators like Visa, MasterCard, PayPal, and other secure payment gateways.</p><h2>30-Day Money-Back Guarantee</h2><p>We're confident in our service. If you're not satisfied within the first 30 days, simply contact our support team for a full refund. Review our <a href="/subscription.html">subscription page</a> for more details.</p><p>Explore our <a href="/installation-guide.html">installation guide</a> for easy setup on your devices.</p>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4" />
+            </svg>
+          </div>
+          <h3 class="font-semibold mb-2">{data.vodCount}+ Movies & Series</h3>
+          <p class="text-sm text-muted-foreground">Unlimited access to our extensive on-demand library</p>
         </div>
-      </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-logo">kemo iptv</div>
-            <p class="footer-description">Premium streaming service with 24000+ live channels and 130000+ on-demand titles. Watch anywhere, anytime.</p>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
-          <div>
-            <h4 class="footer-heading">Quick Links</h4>
-            <ul class="footer-links">
-              <li><a href="/pricing.html">Pricing</a></li>
-              <li><a href="/subscription.html">Subscribe</a></li>
-              <li><a href="/installation-guide.html">Setup Guide</a></li>
-              <li><a href="/reseller.html">Reseller Program</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="footer-heading">Resources</h4>
-            <ul class="footer-links">
-              <li><a href="/blog.html">Blog</a></li>
-              <li><a href="/about.html">About Us</a></li>
-              <li><a href="/contact.html">Contact</a></li>
-              <li><a href="/#faq">FAQ</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="footer-heading">Legal</h4>
-            <ul class="footer-links">
-              <li><a href="/privacy.html">Privacy Policy</a></li>
-              <li><a href="/terms.html">Terms of Service</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 kemo iptv. All rights reserved.</p>
-          <div class="footer-legal">
-            <a href="/privacy.html">Privacy</a>
-            <a href="/terms.html">Terms</a>
-          </div>
+          <h3 class="font-semibold mb-2">24/7 Customer Support</h3>
+          <p class="text-sm text-muted-foreground">Expert assistance whenever you need it via chat, email, or phone</p>
         </div>
       </div>
-    </footer>`} />
+    </div>
+  </section>
+
+  {pricingFaq.length > 0 && (
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+        <FAQSection client:visible items={pricingFaq.map(f => ({ question: f.data.question, answer: f.body || '' }))} showHeader={false} />
+      </div>
+    </section>
+  )}
 </BaseLayout>

@@ -1,0 +1,107 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import SEO from '../../components/SEO.astro';
+import { generateArticleSchema, generateBreadcrumbSchema } from '../../utils/schema';
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog').catch(() => []);
+  return blogPosts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: any;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const serviceInfoEntries = await getCollection('service-info');
+const serviceInfo = serviceInfoEntries[0];
+const data = serviceInfo?.data || {};
+const baseUrl = data.siteUrl || Astro.url.origin;
+
+const articleSchema = generateArticleSchema({
+  headline: post.data.title,
+  description: post.data.description,
+  image: post.data.image ? `${baseUrl}${post.data.image}` : `${baseUrl}/og-image.jpg`,
+  datePublished: post.data.pubDate,
+  dateModified: post.data.updatedDate,
+  author: {
+    name: post.data.author,
+  },
+  publisher: {
+    name: data.brandName,
+    logo: `${baseUrl}/favicon.svg`,
+  },
+});
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: baseUrl },
+  { name: 'Blog', url: `${baseUrl}/blog` },
+  { name: post.data.title, url: `${baseUrl}/blog/${post.id}` },
+]);
+---
+
+<BlogLayout>
+  <SEO
+    slot="head"
+    title={post.data.title}
+    description={post.data.description}
+    canonicalURL={`${baseUrl}/blog/${post.id}`}
+    ogImage={post.data.image ? `${baseUrl}${post.data.image}` : undefined}
+    ogType="article"
+    articleDate={post.data.pubDate}
+    articleAuthor={post.data.author}
+    articleTags={post.data.tags}
+    schema={[articleSchema, breadcrumbSchema]}
+  />
+
+  <header class="not-prose mb-8">
+    <div class="flex flex-wrap gap-2 mb-4">
+      {post.data.tags.map((tag: string) => (
+        <span class="text-xs px-3 py-1 bg-muted rounded-full text-muted-foreground">
+          {tag}
+        </span>
+      ))}
+    </div>
+    <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
+    <div class="flex items-center gap-4 text-muted-foreground">
+      <span>By {post.data.author}</span>
+      <span>•</span>
+      <time datetime={post.data.pubDate.toISOString()}>
+        {post.data.pubDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </time>
+    </div>
+  </header>
+
+  {post.data.image && (
+    <img
+      src={post.data.image}
+      alt={post.data.imageAlt || post.data.title}
+      class="w-full h-auto rounded-lg mb-8 not-prose"
+      loading="eager"
+    />
+  )}
+
+  <Content />
+
+  <footer class="not-prose mt-12 pt-8 border-t border-border">
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-2 text-primary hover:underline"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to Blog
+    </a>
+  </footer>
+</BlogLayout>
