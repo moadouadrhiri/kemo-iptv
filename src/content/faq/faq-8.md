@@ -1,7 +1,7 @@
 ---
-question: "How long does it take to activate Kemo IPTV?"
-category: "technical"
+question: "How long does it take to activate kemo iptv?"
+category: "support"
 order: 8
 ---
 
-Activating Kemo IPTV is a quick and straightforward process. Once you've completed your purchase, you should receive an email with instructions for setting up your service. Typically, activation occurs almost immediately, or within a few hours of completing your subscription payment, ensuring that you can start enjoying your favorite content without delay.
+Activation of Kemo IPTV is usually a swift process, often occurring within minutes after the successful completion of a subscription. In most cases, users receive their activation details via email, allowing them to start streaming content almost immediately. However, activation time can vary slightly depending on payment processing times and service provider's policies. Users should ensure their email address is correctly provided and check their spam or junk folders if they do not receive the activation message promptly.

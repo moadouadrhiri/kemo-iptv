@@ -1,7 +1,7 @@
 ---
-name: "Mark P."
-location: "San Francisco, USA"
-rating: 4
+name: "David H."
+location: "Denver, USA"
+rating: 5
 ---
 
-Kemo IPTV offers excellent value for money. The subscription is reasonably priced considering the volume of content and quality of streaming provided. It's a cost-effective alternative to traditional cable, with all the channels I want. I’m really satisfied with what I get for the price I pay!
+Kemo iptv offers incredible value for money. The variety of channels and features included in the plan far exceed my expectations considering the price. The service is reliable, thus making it a cost-effective solution for premium entertainment needs without breaking the bank.

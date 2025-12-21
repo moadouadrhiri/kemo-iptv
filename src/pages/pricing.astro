@@ -6,17 +6,14 @@ import PricingSection from '../components/PricingSection';
 import FAQSection from '../components/FAQSection';
 import { generateBreadcrumbSchema, generateProductSchema } from '../utils/schema';
 
-const [serviceInfoEntries, pricingPlans, faqItems] = await Promise.all([
+const [serviceInfoEntries, faqItems] = await Promise.all([
   getCollection('service-info'),
-  getCollection('pricing'),
   getCollection('faq'),
 ]);
 
 const serviceInfo = serviceInfoEntries[0];
 const data = serviceInfo?.data || {};
 const baseUrl = data.siteUrl || Astro.url.origin;
-
-const sortedPricing = [...pricingPlans].sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
 const pricingFaq = faqItems
   .filter(f => f.data.category === 'pricing' || !f.data.category)
@@ -26,12 +23,11 @@ const productSchema = generateProductSchema({
   name: `${data.brandName} IPTV Subscription`,
   description: `Premium IPTV service with ${data.channelCount}+ channels and ${data.vodCount}+ movies`,
   brand: data.brandName,
-  offers: sortedPricing.map(plan => ({
-    priceCurrency: plan.data.currency,
-    price: plan.data.price,
-    name: plan.data.name,
-    url: `${baseUrl}/pricing`,
-  })),
+  offers: [
+    { priceCurrency: 'USD', price: 35, name: 'Starter Package - 1 Device', url: `${baseUrl}/pricing` },
+    { priceCurrency: 'USD', price: 45, name: 'Standard Package - 1 Device', url: `${baseUrl}/pricing` },
+    { priceCurrency: 'USD', price: 79, name: 'Premium Package - 1 Device', url: `${baseUrl}/pricing` },
+  ],
 });
 
 const breadcrumbSchema = generateBreadcrumbSchema([
@@ -49,7 +45,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
     schema={[productSchema, breadcrumbSchema]}
   />
 
-  <section class="py-20 bg-gradient-to-b from-background to-muted/30">
+  <section class="py-16 bg-gradient-to-b from-background to-muted/30">
     <div class="container mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">
         Choose Your Perfect Plan
@@ -62,9 +58,12 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 
   <PricingSection
     client:load
-    plans={sortedPricing.map(p => ({ ...p.data, slug: p.id }))}
     primaryColor={data.primaryColor}
+    ctaLink={data.ctaUrl || '#order'}
+    defaultDevice={1}
     showHeader={false}
+    paymentSettings={data.paymentSettings}
+    brandName={data.brandName}
   />
 
   <section class="py-16 bg-muted/30">

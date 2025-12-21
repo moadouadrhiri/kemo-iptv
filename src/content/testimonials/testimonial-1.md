@@ -1,7 +1,7 @@
 ---
-name: "Tom G."
-location: "Boston, USA"
+name: "Michael S."
+location: "Los Angeles, USA"
 rating: 5
 ---
 
-As a die-hard sports fan, Kemo IPTV has been a game-changer! I never miss a match with their extensive sports channels. From football to basketball, the streaming quality is flawless. I can even catch international games with ease. Highly recommend this service to all sports enthusiasts out there!
+As a sports fanatic, kemo iptv has been a game-changer! The coverage of live sports, including all major leagues, is incredible and uninterrupted. I never miss a game now, thanks to their diverse selection of sports channels. It's the perfect service for anyone who loves staying updated with live sports events.

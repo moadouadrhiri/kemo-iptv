@@ -2,8 +2,8 @@
   {
     "id": "main",
     "brandName": "kemo iptv",
-    "tagline": "Experience Premium Entertainment Everywhere with Kemo IPTV.",
-    "description": "Kemo IPTV provides a seamless streaming experience with access to global channels and on-demand content. Enjoy high-quality entertainment at an unbeatable price, optimized for the best viewing experience in the United States.",
+    "tagline": "Stream Limitlessly with Kemo IPTV - Premier Streaming Experience in the USA!",
+    "description": "Kemo IPTV offers a premium streaming service in the United States with unbeatable quality, variety, and accessibility. Experience live TV, movies, and sports like never before on any device, anywhere. Visit us at https://kemo-iptv.pages.dev for more info.",
     "channelCount": 55000,
     "vodCount": 90000,
     "supportEmail": "support@example.com",
@@ -13,44 +13,49 @@
     "features": [
       {
         "title": "Vast Channel Selection",
-        "description": "Access thousands of live channels from across the globe with Kemo IPTV. Whether you're into news, sports, or drama, our expansive channel selection ensures there's something for everyone.",
-        "icon": "Globe"
-      },
-      {
-        "title": "On-Demand Content",
-        "description": "Never miss a show again with our extensive on-demand library. From the latest blockbusters to timeless classics, enjoy a wide range of genres at your fingertips.",
-        "icon": "Film"
-      },
-      {
-        "title": "High Definition Streaming",
-        "description": "Experience entertainment like never before with Kemo IPTV's high-definition streaming capabilities. Enjoy crisp, clear images and immersive sound quality on your favorite devices.",
+        "description": "Explore an extensive array of channels including HD and 4K options. From local broadcasts to international channels, kemo iptv provides an unparalleled scope to cater to all your viewing habits.",
         "icon": "Tv"
       },
       {
-        "title": "User-Friendly Interface",
-        "description": "Navigate with ease using our intuitive, user-friendly interface. Designed for all ages, Kemo IPTV provides a seamless browsing experience, making it easy to find and enjoy your favorite content.",
-        "icon": "Settings"
+        "title": "On-Demand Movies & Shows",
+        "description": "Enjoy vast libraries of on-demand content. With thousands of movies and TV shows available, kemo iptv keeps you entertained with a click, offering genres that fit every mood and taste.",
+        "icon": "Film"
       },
       {
-        "title": "Reliable Customer Support",
-        "description": "Our dedicated support team is always ready to assist. Contact us anytime at support@example.com for prompt, professional help with any questions or technical issues.",
-        "icon": "Users"
+        "title": "Smooth Streaming",
+        "description": "Experience seamless streaming with kemo iptv’s robust infrastructure that minimizes buffering and outages. Enjoy uninterrupted sessions with our reliable and high-speed service across all platforms.",
+        "icon": "Zap"
       },
       {
-        "title": "Universal Device Compatibility",
-        "description": "Kemo IPTV works on all your favorite devices. Whether you're at home or on the go, enjoy consistent quality and performance on smartphones, tablets, smart TVs, and more.",
-        "icon": "Play"
-      },
-      {
-        "title": "Affordable Subscription Plans",
-        "description": "Enjoy premium content without the premium price. Our flexible subscription plans are designed to fit your budget, offering great value and exceptional entertainment.",
-        "icon": "CreditCard"
-      },
-      {
-        "title": "Secure Streaming Service",
-        "description": "Your safety is our priority. With advanced security protocols, Kemo IPTV ensures a secure streaming environment so you can enjoy your shows without worry.",
+        "title": "Top-Notch Security",
+        "description": "Secure your streaming with kemo iptv’s top-notch protection. We employ cutting-edge technology to safeguard your data, ensuring your privacy and peace of mind while you enjoy your favorite content.",
         "icon": "Shield"
+      },
+      {
+        "title": "Global Accessibility",
+        "description": "Watch your favorite shows anywhere. Kemo IPTV allows you to stream globally, bringing worldwide channels right to your screen, whether on vacation or business abroad, stay connected with home.",
+        "icon": "Globe"
+      },
+      {
+        "title": "Catch Up and Rewind",
+        "description": "Never miss a moment with kemo iptv’s catch-up and rewind features. Revisit your favorite shows or skim through missed episodes with ease, putting you in control of your viewing schedule.",
+        "icon": "Clock"
+      },
+      {
+        "title": "24/7 Customer Support",
+        "description": "Our dedicated team is ready to assist you at any moment. With knowledgeable staff available 24/7, kemo iptv ensures you have a smooth and pleasurable experience whenever you need help.",
+        "icon": "Headphones"
+      },
+      {
+        "title": "Affordable Pricing",
+        "description": "Kemo IPTV offers competitive pricing with flexible subscription plans to suit your needs. Enjoy premium content at a price that won’t break the bank, giving you the best value for your entertainment budget.",
+        "icon": "CreditCard"
       }
-    ]
+    ],
+    "paymentSettings": {
+      "buttonText": "BUY NOW",
+      "paymentType": "paygate",
+      "paygateWalletAddress": "0x1e2c390ae5602f3662332061cae6c5658cd54e22"
+    }
   }
 ]

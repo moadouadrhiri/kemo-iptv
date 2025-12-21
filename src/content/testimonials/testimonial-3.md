@@ -1,7 +1,7 @@
 ---
-name: "Sarah L."
+name: "Lisa T."
 location: "Austin, USA"
-rating: 5
+rating: 4
 ---
 
-Kemo IPTV is perfect for family use. It offers a wide range of channels that appeal to everyone in our household—from kid-friendly shows to educational content and news. The parental controls are a great feature, giving us peace of mind while the kids watch. It's a complete entertainment package for families.
+Kemo IPTV is perfect for our family. It offers a wide array of channels that keeps everyone entertained from kids' shows to news and documentaries. The parental controls are easy to use, ensuring kids watch age-appropriate content. It's an excellent solution for diverse family needs.

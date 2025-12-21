@@ -17,18 +17,7 @@
   --color-card-foreground: #0f172a;
   --color-border: #e2e8f0;
   --color-ring: #3b82f6;
-}
-
-.dark {
-  --color-background: #0f172a;
-  --color-foreground: #f8fafc;
-  --color-muted: #1e293b;
-  --color-muted-foreground: #94a3b8;
-  --color-accent: #1e293b;
-  --color-accent-foreground: #f8fafc;
-  --color-card: #1e293b;
-  --color-card-foreground: #f8fafc;
-  --color-border: #334155;
+  --hero-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
 }
 
 @layer base {
@@ -41,23 +30,127 @@
   }
 }
 
+@layer components {
+  .hero-section {
+    @apply relative overflow-hidden py-24 lg:py-32;
+    background: var(--hero-gradient);
+  }
+  
+  .hero-section::before {
+    content: '';
+    @apply absolute inset-0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+  
+  .hero-title {
+    @apply text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-foreground;
+  }
+  
+  .hero-subtitle {
+    @apply mt-6 text-xl text-muted-foreground max-w-2xl mx-auto;
+  }
+  
+  .section-container {
+    @apply py-16 lg:py-24;
+  }
+  
+  .card-modern {
+    @apply bg-card rounded-xl border border-border p-6 shadow-sm;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .card-modern:hover {
+    @apply shadow-lg;
+    transform: translateY(-4px);
+  }
+  
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-medium text-white transition-all;
+    background-color: var(--color-primary);
+  }
+  
+  .btn-primary:hover {
+    filter: brightness(1.1);
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-border bg-background px-6 py-3 text-base font-medium transition-colors;
+  }
+  
+  .btn-secondary:hover {
+    @apply bg-muted;
+  }
+  
+  .header-nav {
+    @apply sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60;
+  }
+  
+  .footer-section {
+    @apply border-t border-border bg-muted/30;
+  }
+  
+  .pricing-card {
+    @apply bg-card rounded-2xl border border-border p-8;
+  }
+  
+  .pricing-card.featured {
+    @apply border-2 relative;
+    border-color: var(--color-primary);
+  }
+  
+  .pricing-card.featured::before {
+    content: 'Most Popular';
+    @apply absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 text-sm font-medium text-white rounded-full;
+    background-color: var(--color-primary);
+  }
+  
+  .feature-icon {
+    @apply h-12 w-12 rounded-xl flex items-center justify-center;
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
+  
+  .feature-icon svg {
+    @apply h-6 w-6;
+    color: var(--color-primary);
+  }
+  
+  .stat-card {
+    @apply text-center p-6 rounded-xl bg-muted/50;
+  }
+  
+  .cta-section {
+    @apply py-20 text-center;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 5%, transparent) 0%, color-mix(in srgb, var(--color-secondary) 5%, transparent) 100%);
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   }
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('/fonts/inter.woff2') format('woff2');
 }
