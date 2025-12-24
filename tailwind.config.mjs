@@ -6,17 +6,17 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: 'var(--color-primary, #3b82f6)',
+          DEFAULT: 'rgb(var(--color-primary-rgb, 59 130 246) / <alpha-value>)',
           foreground: 'var(--color-primary-foreground, #ffffff)',
         },
         secondary: {
-          DEFAULT: 'var(--color-secondary, #8b5cf6)',
+          DEFAULT: 'rgb(var(--color-secondary-rgb, 139 92 246) / <alpha-value>)',
           foreground: 'var(--color-secondary-foreground, #ffffff)',
         },
         background: 'var(--color-background, #ffffff)',
         foreground: 'var(--color-foreground, #0f172a)',
         muted: {
-          DEFAULT: 'var(--color-muted, #f1f5f9)',
+          DEFAULT: 'rgb(var(--color-muted-rgb, 241 245 249) / <alpha-value>)',
           foreground: 'var(--color-muted-foreground, #64748b)',
         },
         accent: {

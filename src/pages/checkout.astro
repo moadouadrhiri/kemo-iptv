@@ -1,0 +1,376 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const serviceInfoEntries = await getCollection('service-info');
+const serviceInfo = serviceInfoEntries[0]?.data || {};
+const brandName = serviceInfo.brandName || 'IPTV Service';
+const primaryColor = serviceInfo.primaryColor || '#38bdf8';
+const paygateWalletAddress = serviceInfo.paymentSettings?.paygateWalletAddress || '';
+const whatsappNumber = serviceInfo.paymentSettings?.whatsappNumber || serviceInfo.contactInfo?.whatsappNumber || '212641520118';
+const baseUrl = serviceInfo.siteUrl || '';
+---
+
+<BaseLayout title={`Checkout - ${brandName}`} description="Complete your purchase securely">
+  <div class="min-h-screen bg-background py-12 px-4">
+    <div class="max-w-lg mx-auto">
+      <div class="bg-card border border-border rounded-xl p-8 shadow-lg">
+        <h1 class="text-2xl font-bold text-center mb-2">Secure Checkout</h1>
+        <p class="text-muted-foreground text-center mb-6">Choose your preferred payment method</p>
+        
+        <div id="order-summary" class="bg-muted/30 rounded-lg p-4 mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm text-muted-foreground">Product</span>
+            <span id="product-name" class="font-medium text-sm"></span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm text-muted-foreground">Amount</span>
+            <span id="amount-display" class="text-xl font-bold" style={`color: ${primaryColor}`}></span>
+          </div>
+        </div>
+        
+        <div id="payment-method-selector" class="space-y-3 mb-6">
+          <p class="text-sm font-medium text-center mb-4">Select Payment Method</p>
+          
+          <button 
+            id="card-option"
+            class="w-full flex items-center gap-4 p-4 rounded-lg border-2 border-border hover:border-primary transition-colors text-left"
+            data-method="card"
+          >
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shrink-0">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-semibold">Card, Apple Pay, Google Pay</div>
+              <div class="text-sm text-muted-foreground">Credit/Debit Cards, Digital Wallets</div>
+            </div>
+            <div class="flex gap-1">
+              <span class="text-[8px] px-1.5 py-0.5 bg-[#1a1f71] text-white rounded font-bold">VISA</span>
+              <span class="text-[8px] px-1.5 py-0.5 bg-gradient-to-r from-[#eb001b] to-[#f79e1b] text-white rounded font-bold">MC</span>
+            </div>
+          </button>
+          
+          <button 
+            id="crypto-option"
+            class="w-full flex items-center gap-4 p-4 rounded-lg border-2 border-border hover:border-primary transition-colors text-left"
+            data-method="crypto"
+          >
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center shrink-0">
+              <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-semibold">Cryptocurrency</div>
+              <div class="text-sm text-muted-foreground">USDC, USDT, BTC, ETH, LTC</div>
+            </div>
+            <div class="flex gap-1">
+              <span class="text-[8px] px-1.5 py-0.5 bg-[#26a17b] text-white rounded font-bold">USDT</span>
+              <span class="text-[8px] px-1.5 py-0.5 bg-[#2775ca] text-white rounded font-bold">USDC</span>
+            </div>
+          </button>
+        </div>
+        
+        <div id="loading-state" class="hidden text-center py-8">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent mb-4"></div>
+          <p class="text-muted-foreground">Preparing secure payment...</p>
+        </div>
+        
+        <div id="card-payment" class="hidden space-y-4">
+          <a 
+            id="card-pay-button"
+            href="#"
+            class="block w-full text-center py-4 px-6 rounded-lg font-semibold text-white transition-all hover:opacity-90"
+            style={`background-color: ${primaryColor}`}
+          >
+            Pay with Card
+          </a>
+          <button id="back-from-card" class="w-full text-center py-2 text-sm text-muted-foreground hover:text-foreground">
+            Choose different method
+          </button>
+        </div>
+        
+        <div id="crypto-payment" class="hidden space-y-4">
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <button class="crypto-coin-btn px-3 py-2 rounded-lg border border-border hover:border-primary text-sm font-medium" data-coin="erc20/usdc" data-network="Ethereum">
+              USDC (ERC20)
+            </button>
+            <button class="crypto-coin-btn px-3 py-2 rounded-lg border border-border hover:border-primary text-sm font-medium" data-coin="polygon/usdc" data-network="Polygon">
+              USDC (Polygon)
+            </button>
+            <button class="crypto-coin-btn px-3 py-2 rounded-lg border border-border hover:border-primary text-sm font-medium" data-coin="trc20/usdt" data-network="Tron">
+              USDT (TRC20)
+            </button>
+            <button class="crypto-coin-btn px-3 py-2 rounded-lg border border-border hover:border-primary text-sm font-medium" data-coin="erc20/usdt" data-network="Ethereum">
+              USDT (ERC20)
+            </button>
+            <button class="crypto-coin-btn px-3 py-2 rounded-lg border border-border hover:border-primary text-sm font-medium" data-coin="btc" data-network="Bitcoin">
+              Bitcoin (BTC)
+            </button>
+            <button class="crypto-coin-btn px-3 py-2 rounded-lg border border-border hover:border-primary text-sm font-medium" data-coin="ltc" data-network="Litecoin">
+              Litecoin (LTC)
+            </button>
+          </div>
+          
+          <div id="crypto-details" class="hidden space-y-4">
+            <div class="text-center">
+              <p class="text-sm text-muted-foreground mb-2">Send exactly:</p>
+              <div id="crypto-amount" class="text-2xl font-bold"></div>
+              <p id="crypto-network" class="text-xs text-muted-foreground mt-1"></p>
+            </div>
+            
+            <div class="bg-muted/20 rounded-lg p-4 text-center">
+              <div id="qr-container" class="flex justify-center mb-4">
+                <img id="qr-image" class="rounded-lg w-48 h-48" alt="Payment QR Code" />
+              </div>
+              <div class="flex items-center gap-2 bg-background rounded-lg p-3 border border-border">
+                <input 
+                  type="text" 
+                  id="crypto-address" 
+                  readonly 
+                  class="flex-1 bg-transparent text-xs font-mono text-center outline-none overflow-hidden text-ellipsis"
+                />
+                <button 
+                  id="copy-btn"
+                  class="shrink-0 px-3 py-1 bg-primary text-primary-foreground rounded text-xs font-medium hover:opacity-90 transition-opacity"
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
+            
+            <div id="crypto-status" class="text-center">
+              <div class="inline-flex items-center gap-2 text-amber-500">
+                <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                </svg>
+                <span>Waiting for payment...</span>
+              </div>
+              <p class="text-xs text-muted-foreground mt-2">Payment will be detected automatically</p>
+            </div>
+          </div>
+          
+          <button id="back-from-crypto" class="w-full text-center py-2 text-sm text-muted-foreground hover:text-foreground">
+            Choose different method
+          </button>
+        </div>
+        
+        <div id="error-state" class="hidden text-center py-8">
+          <div class="text-red-500 mb-4">
+            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold mb-2">Payment Issue</h2>
+          <p id="error-message" class="text-muted-foreground mb-4"></p>
+          <div class="space-y-3">
+            <a id="whatsapp-fallback" href="#" class="flex items-center justify-center gap-2 w-full py-3 px-4 bg-[#25D366] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Contact via WhatsApp
+            </a>
+            <a href="/pricing" class="block w-full text-center py-2 text-sm text-muted-foreground hover:text-foreground">
+              Try Again
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <p class="text-center text-xs text-muted-foreground mt-6">
+        Payments processed securely. 30-day money-back guarantee.
+      </p>
+    </div>
+  </div>
+  
+  <script define:vars={{ paygateWalletAddress, whatsappNumber, baseUrl, primaryColor }}>
+    const urlParams = new URLSearchParams(window.location.search);
+    const amount = urlParams.get('amount') || '0';
+    const product = decodeURIComponent(urlParams.get('product') || 'IPTV Subscription');
+    const wallet = urlParams.get('wallet') || paygateWalletAddress;
+    const successUrl = decodeURIComponent(urlParams.get('success_url') || '/thank-you');
+    const currency = urlParams.get('currency') || 'USD';
+    
+    document.getElementById('product-name').textContent = product;
+    document.getElementById('amount-display').textContent = `$${amount} ${currency}`;
+    
+    const whatsappMessage = encodeURIComponent(`Hi, I want to order ${product} for $${amount}. Please send payment details.`);
+    document.getElementById('whatsapp-fallback').href = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${whatsappMessage}`;
+    
+    const methodSelector = document.getElementById('payment-method-selector');
+    const cardOption = document.getElementById('card-option');
+    const cryptoOption = document.getElementById('crypto-option');
+    const cardPayment = document.getElementById('card-payment');
+    const cryptoPayment = document.getElementById('crypto-payment');
+    const loadingState = document.getElementById('loading-state');
+    const errorState = document.getElementById('error-state');
+    const cryptoDetails = document.getElementById('crypto-details');
+    
+    cardOption?.addEventListener('click', () => initCardPayment());
+    cryptoOption?.addEventListener('click', () => showCryptoOptions());
+    
+    document.getElementById('back-from-card')?.addEventListener('click', () => {
+      cardPayment?.classList.add('hidden');
+      methodSelector?.classList.remove('hidden');
+    });
+    
+    document.getElementById('back-from-crypto')?.addEventListener('click', () => {
+      cryptoPayment?.classList.add('hidden');
+      cryptoDetails?.classList.add('hidden');
+      methodSelector?.classList.remove('hidden');
+    });
+    
+    document.querySelectorAll('.crypto-coin-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const coin = btn.getAttribute('data-coin');
+        const network = btn.getAttribute('data-network');
+        initCryptoPayment(coin, network);
+      });
+    });
+    
+    async function initCardPayment() {
+      methodSelector?.classList.add('hidden');
+      loadingState?.classList.remove('hidden');
+      
+      if (!wallet) {
+        showError('Payment configuration error. Please contact support.');
+        return;
+      }
+      
+      try {
+        const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        const fullSuccessUrl = successUrl.startsWith('http') ? successUrl : `${baseUrl || window.location.origin}${successUrl}`;
+        const callbackUrl = encodeURIComponent(`${fullSuccessUrl}?order_id=${orderId}&status=paid`);
+        
+        const walletApiUrl = `https://api.paygate.to/control/wallet.php?address=${encodeURIComponent(wallet)}&callback=${callbackUrl}`;
+        
+        const response = await fetch(walletApiUrl);
+        const data = await response.json();
+        
+        loadingState?.classList.add('hidden');
+        cardPayment?.classList.remove('hidden');
+        
+        if (data.address_in) {
+          const paymentUrl = `https://checkout.paygate.to/pay.php?address=${data.address_in}&amount=${amount}&email=customer@checkout.com&currency=${currency}`;
+          document.getElementById('card-pay-button').href = paymentUrl;
+        } else {
+          const paymentUrl = `https://paygate.to/pay/?currency=${currency}&amount=${amount}&wallet=${encodeURIComponent(wallet)}&product=${encodeURIComponent(product)}&success_url=${encodeURIComponent(fullSuccessUrl)}`;
+          document.getElementById('card-pay-button').href = paymentUrl;
+        }
+      } catch (err) {
+        console.error('Card payment init error:', err);
+        loadingState?.classList.add('hidden');
+        cardPayment?.classList.remove('hidden');
+        const fullSuccessUrl = successUrl.startsWith('http') ? successUrl : `${baseUrl || window.location.origin}${successUrl}`;
+        const paymentUrl = `https://paygate.to/pay/?currency=${currency}&amount=${amount}&wallet=${encodeURIComponent(wallet)}&product=${encodeURIComponent(product)}&success_url=${encodeURIComponent(fullSuccessUrl)}`;
+        document.getElementById('card-pay-button').href = paymentUrl;
+      }
+    }
+    
+    function showCryptoOptions() {
+      methodSelector?.classList.add('hidden');
+      cryptoPayment?.classList.remove('hidden');
+    }
+    
+    async function initCryptoPayment(coin, network) {
+      cryptoDetails?.classList.add('hidden');
+      loadingState?.classList.remove('hidden');
+      
+      if (!wallet) {
+        showError('Payment configuration error. Please contact support.');
+        return;
+      }
+      
+      try {
+        const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        const fullSuccessUrl = successUrl.startsWith('http') ? successUrl : `${baseUrl || window.location.origin}${successUrl}`;
+        const callbackUrl = encodeURIComponent(`${fullSuccessUrl}?order_id=${orderId}&status=paid`);
+        
+        const walletApiUrl = `https://api.paygate.to/crypto/${coin}/wallet.php?address=${encodeURIComponent(wallet)}&callback=${callbackUrl}`;
+        
+        const [walletResponse, convertResponse] = await Promise.all([
+          fetch(walletApiUrl),
+          fetch(`https://api.paygate.to/crypto/${coin}/convert.php?from=${currency}&value=${amount}`)
+        ]);
+        
+        const walletData = await walletResponse.json();
+        const convertData = await convertResponse.json();
+        
+        if (walletData.address_in) {
+          loadingState?.classList.add('hidden');
+          cryptoDetails?.classList.remove('hidden');
+          
+          const cryptoAmount = convertData.value_coin || amount;
+          const coinName = coin.includes('/') ? coin.split('/')[1].toUpperCase() : coin.toUpperCase();
+          
+          document.getElementById('crypto-amount').textContent = `${cryptoAmount} ${coinName}`;
+          document.getElementById('crypto-network').textContent = `Network: ${network}`;
+          document.getElementById('crypto-address').value = walletData.address_in;
+          
+          const qrData = walletData.address_in;
+          document.getElementById('qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`;
+          
+          document.getElementById('copy-btn')?.addEventListener('click', () => {
+            navigator.clipboard.writeText(walletData.address_in);
+            document.getElementById('copy-btn').textContent = 'Copied!';
+            setTimeout(() => { document.getElementById('copy-btn').textContent = 'Copy'; }, 2000);
+          });
+          
+          pollCryptoStatus(coin, walletData.address_in);
+        } else {
+          showError('Could not generate payment address. Please try again or use WhatsApp.');
+        }
+      } catch (err) {
+        console.error('Crypto payment init error:', err);
+        showError('Payment service temporarily unavailable. Please contact us via WhatsApp.');
+      }
+    }
+    
+    function pollCryptoStatus(coin, address) {
+      let attempts = 0;
+      const maxAttempts = 180;
+      
+      const checkStatus = async () => {
+        attempts++;
+        if (attempts > maxAttempts) {
+          const statusEl = document.getElementById('crypto-status');
+          if (statusEl) {
+            statusEl.innerHTML = `
+              <p class="text-muted-foreground">Payment window expired.</p>
+              <a href="/pricing" class="text-primary hover:underline">Start new payment</a>
+            `;
+          }
+          return;
+        }
+        
+        try {
+          const response = await fetch(`https://api.paygate.to/crypto/${coin}/status.php?address=${address}`);
+          const data = await response.json();
+          
+          if (data.status === 'paid' || data.paid || data.value_coin > 0) {
+            const fullSuccessUrl = successUrl.startsWith('http') ? successUrl : `${baseUrl || window.location.origin}${successUrl}`;
+            window.location.href = fullSuccessUrl;
+            return;
+          }
+        } catch (e) {
+          console.log('Status check failed, retrying...');
+        }
+        
+        setTimeout(checkStatus, 10000);
+      };
+      
+      setTimeout(checkStatus, 10000);
+    }
+    
+    function showError(message) {
+      loadingState?.classList.add('hidden');
+      methodSelector?.classList.add('hidden');
+      cardPayment?.classList.add('hidden');
+      cryptoPayment?.classList.add('hidden');
+      errorState?.classList.remove('hidden');
+      document.getElementById('error-message').textContent = message;
+    }
+  </script>
+</BaseLayout>

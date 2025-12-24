@@ -1,7 +1,7 @@
 ---
-name: "Lisa T."
-location: "Austin, USA"
+name: "Martin Johnson"
+location: "Austin, United States"
 rating: 4
 ---
 
-Kemo IPTV is perfect for our family. It offers a wide array of channels that keeps everyone entertained from kids' shows to news and documentaries. The parental controls are easy to use, ensuring kids watch age-appropriate content. It's an excellent solution for diverse family needs.
+Our whole family enjoys Kemo IPTV! With kids' channels, educational programs, and shows for us parents, there's something for everyone. It's easy to set up, and switching between profiles is a breeze. It’s made family nights more fun and diverse!

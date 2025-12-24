@@ -1,7 +1,7 @@
 ---
-name: "David H."
-location: "Denver, USA"
+name: "Paula Higgins"
+location: "Seattle, United States"
 rating: 5
 ---
 
-Kemo iptv offers incredible value for money. The variety of channels and features included in the plan far exceed my expectations considering the price. The service is reliable, thus making it a cost-effective solution for premium entertainment needs without breaking the bank.
+Kemo IPTV offers tremendous value for money. With a wide array of channels and exceptional streaming quality, this service has replaced multiple expensive subscriptions while meeting all my entertainment needs. It's a budget-friendly choice without compromising quality.

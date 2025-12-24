@@ -10,19 +10,24 @@ interface FAQItem {
 interface FAQSectionProps {
   items: FAQItem[];
   showHeader?: boolean;
+  translations?: {
+    title: string;
+    subtitle: string;
+  };
 }
 
-export default function FAQSection({ items, showHeader = true }: FAQSectionProps) {
+export default function FAQSection({ items, showHeader = true, translations }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const t = translations || { title: 'Frequently Asked Questions', subtitle: 'Find answers to common questions about our service.' };
 
   return (
     <section className="py-12">
       <div className="container mx-auto px-4 max-w-3xl">
         {showHeader && (
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold mb-4">{t.title}</h2>
             <p className="text-muted-foreground">
-              Find answers to common questions about our service.
+              {t.subtitle}
             </p>
           </div>
         )}

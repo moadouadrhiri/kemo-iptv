@@ -11,11 +11,9 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 Disallow: /.well-known/
+Disallow: /thank-you
 
-Sitemap: ${baseURL}/sitemap.xml
-
-# Crawl delay
-Crawl-delay: 1`;
+Sitemap: ${baseURL}/sitemap.xml`;
 
   return new Response(robots, {
     headers: {

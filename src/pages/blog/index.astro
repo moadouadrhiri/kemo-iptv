@@ -46,7 +46,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
       {sortedPosts.length > 0 ? (
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sortedPosts.map(post => (
-            <article class="bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-colors">
+            <article class="bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-colors">
               {post.data.image && (
                 <img
                   src={post.data.image}

@@ -1,7 +1,7 @@
 ---
-name: "Nina L."
-location: "Miami, USA"
+name: "Carlos Gutierrez"
+location: "Miami, United States"
 rating: 5
 ---
 
-Customer support at kemo iptv is top-notch. Whenever I have queries, their service team responds quickly and efficiently resolves issues. The representatives are friendly and knowledgeable, making me feel valued as a customer. Excellent support like this is rare and much appreciated.
+I had a few questions setting up my Kemo IPTV, and the customer support was outstanding. They were quick to respond and walked me through the process patiently. It's rare to find such efficiently friendly service, and it reassures me that I am in good hands.

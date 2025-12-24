@@ -1,24 +1,27 @@
 ---
 import { getCollection } from 'astro:content';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getUITranslations, type LanguageCode } from '../utils/i18n';
 
 interface Props {
   currentLang?: string;
 }
 
 const { currentLang = 'en' } = Astro.props;
+const t = getUITranslations(currentLang as LanguageCode);
 
 const serviceInfoEntries = await getCollection('service-info');
 const serviceInfo = serviceInfoEntries[0];
 const brandName = serviceInfo?.data?.brandName || 'kemo iptv';
 
 const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/features', label: 'Features' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', label: t.nav.home },
+  { href: '/pricing', label: t.nav.pricing },
+  { href: '/features', label: t.nav.features },
+  { href: '/installation-guides', label: t.nav.setup || 'Setup' },
+  { href: '/reviews', label: t.nav.reviews || 'Reviews' },
+  { href: '/faq', label: t.nav.faq },
+  { href: '/contact', label: t.nav.contact },
 ];
 ---
 
@@ -45,7 +48,7 @@ const navItems = [
         href="/pricing"
         class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
       >
-        Get Started
+        {t.hero.getStarted}
       </a>
       
       <button

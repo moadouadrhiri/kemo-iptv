@@ -12,6 +12,10 @@ interface Feature {
 interface FeatureGridProps {
   features: Feature[];
   primaryColor?: string;
+  translations?: {
+    title: string;
+    subtitle: string;
+  };
 }
 
 const iconMap: Record<string, any> = {
@@ -29,14 +33,16 @@ const iconMap: Record<string, any> = {
   headphones: Headphones,
 };
 
-export default function FeatureGrid({ features, primaryColor = '#3b82f6' }: FeatureGridProps) {
+export default function FeatureGrid({ features, primaryColor = '#3b82f6', translations }: FeatureGridProps) {
+  const t = translations || { title: 'Why Choose Us', subtitle: 'Experience premium IPTV with cutting-edge features designed for your entertainment needs.' };
+  
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Why Choose Us</h2>
+          <h2 className="text-3xl font-bold mb-4">{t.title}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Experience premium IPTV with cutting-edge features designed for your entertainment needs.
+            {t.subtitle}
           </p>
         </div>
 
@@ -46,7 +52,7 @@ export default function FeatureGrid({ features, primaryColor = '#3b82f6' }: Feat
             return (
               <div 
                 key={index}
-                className="bg-card rounded-lg p-6 border border-border transition-all hover:border-primary/50 hover:shadow-lg"
+                className="bg-card rounded-lg p-6 border border-border transition-all hover:border-primary hover:shadow-lg"
               >
                 <div 
                   className="h-12 w-12 rounded-lg flex items-center justify-center mb-4"

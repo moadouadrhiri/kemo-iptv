@@ -1,7 +1,7 @@
 ---
-name: "Kevin M."
-location: "Seattle, USA"
+name: "Emily Parker"
+location: "New York, United States"
 rating: 5
 ---
 
-Device compatibility with kemo iptv is seamless! I can effortlessly stream on my smart TV, tablet, and phone. It’s perfect when I’m switching between devices throughout the day. The flexibility and ease of access are unmatched. No tech issues, just smooth streaming across devices.
+I use Kemo IPTV across multiple devices, and it's incredibly convenient. Whether I'm on my laptop, tablet, or smart TV, the application runs smoothly without any hitches. The user interface is intuitive, making it perfect for tech-savvy users and beginners alike.

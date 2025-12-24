@@ -193,3 +193,68 @@ export function generateServiceSchema(
     serviceType: 'IPTV Streaming Service',
   };
 }
+
+export interface SchemaReview {
+  author: string;
+  reviewBody: string;
+  ratingValue: number;
+  datePublished?: Date;
+}
+
+export function generateReviewSchema(
+  reviews: SchemaReview[],
+  itemReviewed: { name: string; type?: string }
+) {
+  if (reviews.length === 0) return null;
+  
+  const avgRating = reviews.reduce((sum, r) => sum + r.ratingValue, 0) / reviews.length;
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: itemReviewed.name,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: avgRating.toFixed(1),
+      reviewCount: reviews.length,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    review: reviews.map(review => ({
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: review.author,
+      },
+      reviewBody: review.reviewBody,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: review.ratingValue,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      ...(review.datePublished && {
+        datePublished: review.datePublished.toISOString(),
+      }),
+    })),
+  };
+}
+
+export function generateLocalBusinessSchema(
+  name: string,
+  url: string,
+  description: string,
+  email: string,
+  priceRange: string = '$$'
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name,
+    url,
+    description,
+    email,
+    priceRange,
+    '@id': url,
+  };
+}

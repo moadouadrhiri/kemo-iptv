@@ -1,6 +1,70 @@
 import { defineCollection, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 
+const contactInfoSchema = z.object({
+  whatsappNumber: z.string().optional(),
+  telegramUsername: z.string().optional(),
+  supportEmail: z.string().email().optional(),
+});
+
+const paymentSettingsSchema = z.object({
+  paymentType: z.enum(['paygate', 'whatsapp', 'email', 'custom_link']).default('whatsapp'),
+  paygateWalletAddress: z.string().optional(),
+  paygateSuccessUrl: z.string().optional(),
+  whatsappNumber: z.string().optional(),
+  whatsappMessage: z.string().optional(),
+  contactEmail: z.string().email().optional(),
+  emailSubject: z.string().optional(),
+  customPaymentLink: z.string().url().optional(),
+  buttonText: z.string().default('Buy Now'),
+  contactInfo: contactInfoSchema.optional(),
+});
+
+const localContextSchema = z.object({
+  popularDevices: z.array(z.string()).default([]),
+  popularUseCases: z.array(z.string()).default([]),
+  paymentMethods: z.array(z.string()).default([]),
+  localProviders: z.array(z.string()).default([]),
+  viewingHabits: z.string().optional(),
+});
+
+const siteConfigSchema = z.object({
+  brandName: z.string(),
+  siteUrl: z.string().url(),
+  focusKeyword: z.string().default("IPTV"),
+  country: z.string().default("United States"),
+  countryCode: z.string().default("US"),
+  locale: z.string().default("en-US"),
+  currency: z.string().default("USD"),
+  currencySymbol: z.string().default("$"),
+  supportEmail: z.string().email(),
+  phone: z.string().optional(),
+  whatsappLink: z.string().optional(),
+  guaranteeDays: z.number().default(7),
+  primaryCtaText: z.string().default("Get Started Now"),
+  secondaryCtaText: z.string().default("Learn More"),
+  trustPoints: z.array(z.string()).default([]),
+  localContext: localContextSchema.optional(),
+  channelCount: z.number().default(18000),
+  vodCount: z.number().default(80000),
+  countryCount: z.number().default(100),
+  primaryColor: z.string().default("#3b82f6"),
+  secondaryColor: z.string().default("#8b5cf6"),
+  logoUrl: z.string().optional(),
+  templateId: z.string().default("classic"),
+  defaultLanguage: z.string().default("en"),
+  enabledLanguages: z.array(z.string()).default(["en"]),
+  responseTime: z.string().default("under 2 hours"),
+  organizationDescription: z.string().optional(),
+  paymentSettings: paymentSettingsSchema.optional(),
+  contactInfo: contactInfoSchema.optional(),
+});
+
+const siteConfig = defineCollection({
+  loader: file('src/content/site-config/index.json'),
+  schema: siteConfigSchema,
+});
+
 const serviceInfoSchema = z.object({
   brandName: z.string().min(1).max(100),
   tagline: z.string().min(10).max(200),
@@ -25,6 +89,8 @@ const serviceInfoSchema = z.object({
     description: z.string(),
     icon: z.string(),
   })).optional(),
+  paymentSettings: paymentSettingsSchema.optional(),
+  contactInfo: contactInfoSchema.optional(),
 });
 
 const serviceInfo = defineCollection({
@@ -77,6 +143,11 @@ const blog = defineCollection({
     tags: z.array(z.string()),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
+    category: z.string().optional(),
+    ctaHeadline: z.string().optional(),
+    ctaDescription: z.string().optional(),
+    ctaCouponCode: z.string().optional(),
+    ctaCouponDiscount: z.string().optional(),
   }),
 });
 
@@ -153,6 +224,7 @@ const devices = defineCollection({
 });
 
 export const collections = {
+  'site-config': siteConfig,
   'service-info': serviceInfo,
   'iptv-services': iptvServices,
   categories,

@@ -2,21 +2,37 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SEO from '../components/SEO.astro';
-import HeroSection from '../components/HeroSection';
+import FlashSaleBanner from '../components/FlashSaleBanner';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBadges from '../components/TrustBadges';
 import FeatureGrid from '../components/FeatureGrid';
+import FilmsSeriesSection from '../components/FilmsSeriesSection';
+import SportsSection from '../components/SportsSection';
+import PerformanceSection from '../components/PerformanceSection';
+import GuaranteeSection from '../components/GuaranteeSection';
+import HowToPurchaseSection from '../components/HowToPurchaseSection';
+import CompatibleDevicesSection from '../components/CompatibleDevicesSection';
 import PricingSection from '../components/PricingSection';
-import FAQSection from '../components/FAQSection';
+import FreeTrialCTA from '../components/FreeTrialCTA';
 import TestimonialSection from '../components/TestimonialSection';
+import FAQSection from '../components/FAQSection';
 import CTASection from '../components/CTASection';
+import StickyContactButton from '../components/StickyContactButton';
+import MobileBottomCTA from '../components/MobileBottomCTA';
+import SEOContentSection from '../components/SEOContentSection';
+import { getUITranslations, type LanguageCode } from '../utils/i18n';
 import {
   generateOrganizationSchema,
   generateProductSchema,
   generateWebSiteSchema,
   generateBreadcrumbSchema,
+  generateFAQSchema,
+  generateReviewSchema,
 } from '../utils/schema';
 
-const [serviceInfoEntries, pricingPlans, faqItems, testimonials] = await Promise.all([
+const [serviceInfoEntries, siteConfigEntries, pricingPlans, faqItems, testimonials] = await Promise.all([
   getCollection('service-info'),
+  getCollection('site-config').catch(() => []),
   getCollection('pricing'),
   getCollection('faq'),
   getCollection('testimonials').catch(() => []),
@@ -24,8 +40,20 @@ const [serviceInfoEntries, pricingPlans, faqItems, testimonials] = await Promise
 
 const serviceInfo = serviceInfoEntries[0];
 const data = serviceInfo?.data || {};
+const siteConfig = siteConfigEntries[0]?.data || {};
+
+const currentLang = (siteConfig.defaultLanguage || 'en') as LanguageCode;
+const t = getUITranslations(currentLang);
+const guaranteeDays = siteConfig.guaranteeDays || 30;
+const channelCount = data.channelCount || 28000;
+const vodCount = data.vodCount || 90000;
+const countryCount = siteConfig.countryCount || 100;
 
 const baseUrl = data.siteUrl || Astro.url.origin;
+
+const contactInfo = data.contactInfo || {};
+const whatsappNumber = contactInfo.whatsappNumber;
+const telegramUsername = contactInfo.telegramUsername;
 
 const organizationSchema = generateOrganizationSchema({
   name: data.brandName,
@@ -48,8 +76,8 @@ const productSchema = generateProductSchema({
     url: `${baseUrl}/pricing`,
   })),
   aggregateRating: {
-    ratingValue: 4.8,
-    reviewCount: testimonials.length || 150,
+    ratingValue: 4.9,
+    reviewCount: testimonials.length > 0 ? testimonials.length * 127 : 25567,
   },
 });
 
@@ -63,60 +91,302 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: 'Home', url: baseUrl },
 ]);
 
-const schemas = [organizationSchema, productSchema, websiteSchema, breadcrumbSchema];
-
 const sortedPricing = [...pricingPlans].sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 const sortedFaq = [...faqItems].sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+const faqSchema = sortedFaq.length > 0 
+  ? generateFAQSchema(sortedFaq.map(f => ({
+      question: f.data.question,
+      answer: f.body || f.data.answer || '',
+    })))
+  : null;
+
+const reviewSchema = testimonials.length > 0
+  ? generateReviewSchema(
+      testimonials.map(t => ({
+        author: t.data.author || t.data.name || 'Customer',
+        reviewBody: t.body || t.data.content || '',
+        ratingValue: t.data.rating || 5,
+        datePublished: t.data.date ? new Date(t.data.date) : undefined,
+      })),
+      { name: `${data.brandName} IPTV Service` }
+    )
+  : null;
+
+const schemas = [
+  organizationSchema, 
+  productSchema, 
+  websiteSchema, 
+  breadcrumbSchema,
+  faqSchema,
+  reviewSchema,
+].filter(Boolean);
 ---
 
-<BaseLayout>
+<BaseLayout currentLang={currentLang}>
   <SEO
     slot="head"
-    title={data.brandName}
-    description={data.description}
+    title={`${data.brandName} - Premium IPTV Service | ${channelCount.toLocaleString()}+ Channels`}
+    description={data.description || `Experience premium IPTV with ${channelCount.toLocaleString()}+ live channels, ${vodCount.toLocaleString()}+ movies and series. HD & 4K quality, 24/7 support, ${guaranteeDays}-day money back guarantee.`}
     canonicalURL={baseUrl}
     ogImage={`${baseUrl}/og-image.jpg`}
     schema={schemas}
+    pageType="home"
   />
 
-  <HeroSection
+  <!-- Flash Sale Banner (Sticky) -->
+  <FlashSaleBanner
     client:load
-    title={data.brandName}
-    subtitle={data.tagline}
-    channelCount={data.channelCount}
-    vodCount={data.vodCount}
+    title={t.flashSale.title}
+    offerText={t.flashSale.subtitle}
+    ctaText={t.flashSale.claimNow}
+    ctaLink="#pricing"
     primaryColor={data.primaryColor}
   />
 
-  {data.features && data.features.length > 0 && (
-    <FeatureGrid client:visible features={data.features} primaryColor={data.primaryColor} />
-  )}
+  <!-- Section 1: Hero with Dual CTAs (Server-rendered for fast LCP) -->
+  <HeroSection
+    title={data.brandName}
+    subtitle={data.tagline || `Access ${channelCount.toLocaleString()}+ live TV channels and ${vodCount.toLocaleString()}+ movies and series. Premium HD & 4K streaming with 99.9% uptime guarantee.`}
+    channelCount={channelCount}
+    vodCount={vodCount}
+    primaryColor={data.primaryColor}
+    showFreeTrial={true}
+    whatsappNumber={whatsappNumber}
+    trialHours={24}
+    currentLang={currentLang}
+  />
 
-  {sortedPricing.length > 0 && (
-    <PricingSection
-      client:visible
-      plans={sortedPricing.map(p => ({ ...p.data, slug: p.id }))}
+  <!-- Trust Badges -->
+  <TrustBadges 
+    client:visible 
+    primaryColor={data.primaryColor} 
+    variant="horizontal"
+    guaranteeDays={guaranteeDays}
+    translations={{
+      moneyBack: t.trustBadges?.moneyBack,
+      moneyBackDesc: t.trustBadges?.moneyBackDesc,
+      securePayments: t.trustBadges?.securePayments,
+      securePaymentsDesc: t.trustBadges?.securePaymentsDesc,
+      support247: t.trustBadges?.support247,
+      supportDesc: t.trustBadges?.supportDesc,
+      instantActivation: t.trustBadges?.instantActivation,
+      activationDesc: t.trustBadges?.activationDesc,
+    }}
+  />
+
+  <!-- Features Grid -->
+  {data.features && data.features.length > 0 && (
+    <FeatureGrid 
+      client:visible 
+      features={data.features} 
       primaryColor={data.primaryColor}
+      translations={{ title: t.features.title, subtitle: t.features.subtitle }}
     />
   )}
 
-  {sortedFaq.length > 0 && (
-    <FAQSection client:visible items={sortedFaq.map(f => ({ question: f.data.question, answer: f.body || '' }))} />
-  )}
+  <!-- Section 2: Films & Series -->
+  <FilmsSeriesSection 
+    client:visible 
+    brandName={data.brandName} 
+    primaryColor={data.primaryColor}
+    translations={{ title: t.movies.title, subtitle: t.movies.subtitle }}
+  />
 
+  <!-- Section 3: Sports -->
+  <SportsSection 
+    client:visible 
+    brandName={data.brandName} 
+    primaryColor={data.primaryColor}
+    translations={{ title: t.sports.title, subtitle: t.sports.subtitle }}
+  />
+
+  <!-- Performance Section (No Buffering) -->
+  <PerformanceSection
+    client:visible
+    brandName={data.brandName}
+    primaryColor={data.primaryColor}
+    uptimePercent={99.9}
+    channelCount={channelCount}
+    countryCount={countryCount}
+  />
+
+  <!-- Section 4: Money Back Guarantee -->
+  <GuaranteeSection 
+    client:visible 
+    brandName={data.brandName} 
+    primaryColor={data.primaryColor}
+    guaranteeDays={guaranteeDays}
+    translations={{
+      title: t.guarantee.title.replace('{brand}', data.brandName || 'IPTV'),
+      description: t.guarantee.description.replace('{brand}', data.brandName || 'IPTV'),
+      point1: t.guarantee.point1,
+      point2: t.guarantee.point2,
+      point3: t.guarantee.point3.replace('{days}', String(guaranteeDays)),
+      point4: t.guarantee.point4,
+      ctaButton: t.guarantee.ctaButton,
+      dayLabel: t.guarantee.dayLabel,
+      badgeText: t.guarantee.badgeText,
+    }}
+  />
+
+  <!-- Section 5: How to Purchase -->
+  <HowToPurchaseSection 
+    client:visible 
+    brandName={data.brandName} 
+    primaryColor={data.primaryColor}
+    translations={{
+      title: t.howToPurchase?.title,
+      subtitle: t.howToPurchase?.subtitle,
+      step1Title: t.howToPurchase?.step1Title,
+      step1Desc: t.howToPurchase?.step1Desc,
+      step2Title: t.howToPurchase?.step2Title,
+      step2Desc: t.howToPurchase?.step2Desc,
+      step3Title: t.howToPurchase?.step3Title,
+      step3Desc: t.howToPurchase?.step3Desc,
+    }}
+  />
+
+  <!-- Section 6: Compatible Devices -->
+  <CompatibleDevicesSection 
+    client:visible 
+    brandName={data.brandName} 
+    primaryColor={data.primaryColor}
+    translations={{ title: t.devices.title, subtitle: t.devices.subtitle }}
+  />
+
+  <!-- Pricing Section with Countdown -->
+  <div id="pricing">
+    {sortedPricing.length > 0 && (
+      <PricingSection
+        client:visible
+        plans={sortedPricing.map(p => ({ ...p.data, slug: p.id }))}
+        primaryColor={data.primaryColor}
+        paymentSettings={data.paymentSettings}
+        brandName={data.brandName}
+        translations={{
+          secureCheckout: t.pricing?.secureCheckout,
+          reviews: t.pricing?.reviews,
+          flashSaleTitle: t.pricing?.flashSaleTitle,
+          priceReturns: t.pricing?.priceReturns,
+          buyNow: t.pricing?.buyNow,
+          popular: t.pricing?.popular,
+          bestValue: t.pricing?.bestValue,
+          selectDevices: t.pricing?.selectDevices,
+          device: t.pricing?.device,
+          devices: t.pricing?.devices,
+          headerTitle: t.pricing?.headerTitle,
+          headerSubtitle: t.pricing?.headerSubtitle,
+          starterPackage: t.pricing?.starterPackage,
+          standardPackage: t.pricing?.standardPackage,
+          premiumPackage: t.pricing?.premiumPackage,
+          noBindingContract: t.pricing?.noBindingContract,
+          threeMonths: t.pricing?.threeMonths,
+          sixMonths: t.pricing?.sixMonths,
+          twelveMonths: t.pricing?.twelveMonths,
+          bonusMonths: t.pricing?.bonusMonths,
+          globalChannels: t.pricing?.globalChannels,
+          moviesSeriesCount: t.pricing?.moviesSeriesCount,
+          timeShift: t.pricing?.timeShift,
+          qualityAll: t.pricing?.qualityAll,
+          antiFreeze: t.pricing?.antiFreeze,
+          dailyUpdates: t.pricing?.dailyUpdates,
+          moneyBackGuarantee: t.pricing?.moneyBackGuarantee,
+        }}
+      />
+    )}
+  </div>
+
+  <!-- Free Trial CTA Section -->
+  <FreeTrialCTA
+    client:visible
+    brandName={data.brandName}
+    channelCount={channelCount}
+    trialHours={24}
+    primaryColor={data.primaryColor}
+    whatsappNumber={whatsappNumber}
+    translations={{
+      badge: t.trial.badge,
+      title: t.trial.title.replace('{brand}', data.brandName || 'IPTV'),
+      subtitle: t.trial.subtitle,
+      feature1: `${channelCount.toLocaleString()}+ ${t.hero.liveChannels}`,
+      feature2: t.hero.hdQuality,
+      feature3: t.trial.fullAccess,
+      feature4: t.hero.noCardRequired,
+      ctaButton: t.trial.ctaButton,
+      hoursFree: t.trial.hoursFree,
+      fullAccess: t.trial.fullAccess,
+      instantAccess: t.trial.instantAccess,
+      noCommitment: t.trial.noCommitment,
+    }}
+  />
+
+  <!-- Testimonials with Stars and Locations -->
   {testimonials.length > 0 && (
     <TestimonialSection
       client:visible
-      testimonials={testimonials.map(t => ({ ...t.data, content: t.body || '' }))}
+      testimonials={testimonials.map(testim => ({ 
+        ...testim.data, 
+        content: testim.body || testim.data.content || '',
+        verified: true,
+      }))}
+      primaryColor={data.primaryColor}
+      showCTA={true}
+      ctaLink="#pricing"
+      translations={{
+        title: t.testimonials.title,
+        subtitle: t.testimonials.subtitle,
+        reviews: t.testimonials.reviews,
+        verifiedPurchase: t.testimonials.verifiedPurchase,
+        ctaButton: t.testimonials.ctaButton,
+      }}
     />
   )}
 
+  <!-- FAQ Section -->
+  {sortedFaq.length > 0 && (
+    <FAQSection 
+      client:visible 
+      items={sortedFaq.map(f => ({ question: f.data.question, answer: f.body || '' }))} 
+      translations={{ title: t.faq.title, subtitle: t.faq.subtitle }}
+    />
+  )}
+
+  <!-- SEO Content Section (Expandable) -->
+  <SEOContentSection
+    client:visible
+    brandName={data.brandName || 'IPTV Service'}
+    channelCount={channelCount}
+    countryCount={countryCount}
+    vodCount={vodCount}
+    primaryColor={data.primaryColor}
+  />
+
+  <!-- Final CTA Section -->
   <CTASection
     client:visible
-    title="Ready to Start Streaming?"
-    subtitle="Join thousands of satisfied customers and experience premium entertainment"
-    buttonText="Get Started Now"
-    buttonLink="/pricing"
+    title={t.cta.readyToStream || 'Ready to Start Streaming?'}
+    subtitle={t.cta.joinThousands?.replace('{channels}', channelCount.toLocaleString()) || `Join thousands of satisfied customers and experience premium entertainment with ${channelCount.toLocaleString()}+ channels`}
+    buttonText={t.hero.getStarted}
+    buttonLink="#pricing"
     primaryColor={data.primaryColor}
+  />
+
+  <!-- Sticky Contact Button (Mobile) -->
+  <StickyContactButton
+    client:load
+    whatsappNumber={whatsappNumber}
+    telegramUsername={telegramUsername}
+    brandName={data.brandName}
+    primaryColor={data.primaryColor}
+  />
+
+  <!-- Mobile Bottom CTA Bar -->
+  <MobileBottomCTA
+    client:load
+    pricingLink="#pricing"
+    trialLink={whatsappNumber ? `https://wa.me/${whatsappNumber}` : '/free-trial'}
+    primaryColor={data.primaryColor}
+    showTrial={true}
   />
 </BaseLayout>

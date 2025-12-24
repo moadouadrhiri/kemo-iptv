@@ -6,14 +6,21 @@ interface ReadMoreProps {
   previewHeight?: number;
   buttonText?: string;
   expandedButtonText?: string;
+  translations?: {
+    readMore?: string;
+    showLess?: string;
+  };
 }
 
 export default function ReadMore({ 
   children, 
   previewHeight = 400,
-  buttonText = "Read More",
-  expandedButtonText = "Show Less"
+  buttonText,
+  expandedButtonText,
+  translations = {},
 }: ReadMoreProps) {
+  const readMoreLabel = buttonText || translations.readMore || "Read More";
+  const showLessLabel = expandedButtonText || translations.showLess || "Show Less";
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -40,12 +47,12 @@ export default function ReadMore({
         >
           {isExpanded ? (
             <>
-              {expandedButtonText}
+              {showLessLabel}
               <ChevronUp className="h-5 w-5" />
             </>
           ) : (
             <>
-              {buttonText}
+              {readMoreLabel}
               <ChevronDown className="h-5 w-5" />
             </>
           )}
